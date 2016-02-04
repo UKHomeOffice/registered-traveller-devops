@@ -17,6 +17,7 @@ wget http://database.clamav.net/bytecode.cvd -P fpm/var/lib/clamav-db-definition
 chmod 644 fpm/var/lib/clamav-db-definitions/*
 
 fpm -C fpm -t rpm -s dir \
+    --after-install scripts/postinstall.sh \
     -p NAME-VERSION.ARCH.TYPE \
     -n clamav-db-definitions -v "$DATE" -a all . \
     || fail "Failed to build rpm"
